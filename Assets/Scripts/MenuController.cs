@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon;
 
-public class MenuController : Photon.PunBehaviour
+public class MenuController : PunBehaviour
 {
     [SerializeField] private string VersionName = "0.1";
     [SerializeField] private GameObject userNameMenu;
@@ -25,7 +25,7 @@ public class MenuController : Photon.PunBehaviour
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby(TypedLobby.Default);
+        //PhotonNetwork.JoinRandomRoom();
         Debug.Log("CONNECTED");
     }
 
@@ -48,14 +48,18 @@ public class MenuController : Photon.PunBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         userNameMenu.SetActive(true);
     }
     public void CreateGame()
     {
-        PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { MaxPlayers = 5 }, null);
+        PlayerPrefs.SetInt("PlayerType", 1);
+        PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { MaxPlayers = 5}, null);
+        
     }
     public void JoinGame()
     {
+        PlayerPrefs.SetInt("PlayerType", 2);
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 5;
         PhotonNetwork.JoinOrCreateRoom(JoinGameInput.text, roomOptions,TypedLobby.Default);

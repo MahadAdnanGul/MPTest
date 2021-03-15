@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon;
 
-public class ChatManager : Photon.PunBehaviour
+public class ChatManager : Photon.PunBehaviour,IPunCallbacks,IPunObservable
 {
     //public Player plMove;
     public PhotonView photonView;
@@ -58,7 +58,7 @@ public class ChatManager : Photon.PunBehaviour
         DisableSend = false;
     }
 
-    private void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
+    public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
     {
         if(stream.isWriting)
         {
@@ -69,4 +69,5 @@ public class ChatManager : Photon.PunBehaviour
             BubbleSpeechObject.SetActive((bool)stream.ReceiveNext());
         }
     }
+
 }

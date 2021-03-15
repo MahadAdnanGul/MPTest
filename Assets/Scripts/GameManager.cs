@@ -16,6 +16,9 @@ public class GameManager : Photon.PunBehaviour
     public GameObject PlayerFeed;
     public GameObject FeedGrid;
 
+    public GameObject boxObject;
+    public GameObject objectSpawner;
+
 
 
 
@@ -33,7 +36,10 @@ public class GameManager : Photon.PunBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(PlayerPrefs.GetInt("PlayerType",1)==2)
+        {
+            objectSpawner.SetActive(true);
+        }
     }
     private void CheckInput()
     {
@@ -75,5 +81,14 @@ public class GameManager : Photon.PunBehaviour
         obj.transform.SetParent(FeedGrid.transform, false);
         obj.GetComponent<Text>().text = player.NickName + " Left the game";
         obj.GetComponent<Text>().color = Color.red;
+    }
+
+    public void SpawnBox()
+    {
+       GameObject obj= PhotonNetwork.Instantiate(boxObject.name, new Vector3(0,0,0), Quaternion.identity , 0);
+       obj.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.masterClient.ID);
+        
+       
+        
     }
 }
