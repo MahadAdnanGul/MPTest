@@ -13,6 +13,10 @@ public class GenerateButton : MonoBehaviour
     [SerializeField] private GameObject[] largeObjects;
     [SerializeField] private GameObject field;
 
+    private Vector3 smallRoomPos = new Vector3(7.5f, 1.25f, -0.5f);
+    private Vector3 medRoomPos = new Vector3(0, 1.875f, 5f);
+    private Vector3 largeRoomPos = new Vector3(-10f, 2.5f, 10f);
+
     public void Generate()
     {
         foreach (Transform child in field.transform)
@@ -22,45 +26,55 @@ public class GenerateButton : MonoBehaviour
         //Large Object Spawn
         if (dropDownL.text == "Wood")
         {
-            Instantiate<GameObject>(largeObjects[0], field.transform);
+           
+            GameObject large = PhotonNetwork.Instantiate(largeObjects[0].name, largeRoomPos,Quaternion.identity,0);
+            //large.transform.parent = field.transform;
         }
         else if (dropDownL.text == "Glass")
         {
-            Instantiate<GameObject>(largeObjects[1], field.transform);
+            GameObject large = PhotonNetwork.Instantiate(largeObjects[1].name, largeRoomPos, Quaternion.identity, 0);
+            //large.transform.parent = field.transform;
         }
         else if (dropDownL.text == "Metal")
         {
-            Instantiate<GameObject>(largeObjects[2], field.transform);
+            GameObject large = PhotonNetwork.Instantiate(largeObjects[2].name, largeRoomPos, Quaternion.identity, 0);
+            //large.transform.parent = field.transform;
         }
         //End
 
         //Medium Object Spawn
         if (dropDownM.text == "Wood")
         {
-            Instantiate<GameObject>(mediumObjects[0], field.transform);
+            GameObject med = PhotonNetwork.Instantiate(mediumObjects[0].name, medRoomPos, Quaternion.identity, 0);
+            //med.transform.parent = field.transform;
         }
         else if (dropDownM.text == "Glass")
         {
-            Instantiate<GameObject>(mediumObjects[1], field.transform);
+            GameObject med = PhotonNetwork.Instantiate(mediumObjects[1].name, medRoomPos, Quaternion.identity, 0);
+            //med.transform.parent = field.transform;
         }
         else if (dropDownM.text == "Metal")
         {
-            Instantiate<GameObject>(mediumObjects[2], field.transform);
+            GameObject med = PhotonNetwork.Instantiate(mediumObjects[2].name, medRoomPos, Quaternion.identity, 0);
+            //med.transform.parent = field.transform;
         }
         //End
 
         //Small Object Spawn
         if (dropDownS.text == "Wood")
         {
-            Instantiate<GameObject>(smallObjects[0], field.transform);
+            GameObject small = PhotonNetwork.Instantiate(smallObjects[0].name, smallRoomPos, Quaternion.identity, 0);
+            //small.transform.parent = field.transform;
         }
         else if (dropDownS.text == "Glass")
         {
-            Instantiate<GameObject>(smallObjects[1], field.transform);
+            GameObject small = PhotonNetwork.Instantiate(smallObjects[1].name, smallRoomPos, Quaternion.identity, 0);
+            //small.transform.parent = field.transform;
         }
         else if (dropDownS.text == "Metal")
         {
-            Instantiate<GameObject>(smallObjects[2], field.transform);
+            GameObject small = PhotonNetwork.Instantiate(smallObjects[2].name, smallRoomPos, Quaternion.identity, 0);
+            //small.transform.parent = field.transform;
         }
 
     }

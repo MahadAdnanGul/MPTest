@@ -15,6 +15,7 @@ public class MenuController : PunBehaviour
     [SerializeField] private InputField JoinGameInput;
 
     [SerializeField] private GameObject StartButton;
+    
 
 
 
@@ -68,7 +69,7 @@ public class MenuController : PunBehaviour
     
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("MainGame");
+        PhotonNetwork.LoadLevel("NewMainScene");
     }
 
     // Update is called once per frame
